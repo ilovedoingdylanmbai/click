@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>clicking shop</title>
+  <style>
+    :root {
+      --bg: #0a0015;
+      --card-bg: #140033;
+      --accent: #00f0ff;
+      --glow: rgba(0, 240, 255, 0.4);
+      --text: #e0e0ff;
+      --white: #ffffff;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+    .marquee {
+      background: linear-gradient(90deg, #0a0015, #1a0040, #0a0015);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 16px 0;
+      border-bottom: 2px solid var(--accent);
+      box-shadow: 0 4px 20px rgba(0,240,255,0.1);
+    }
+    .marquee-content {
+      display: inline-block;
+      animation: scroll 50s linear infinite;
+      font-size: clamp(1.4rem, 5vw, 2.2rem);
+      font-weight: bold;
+      letter-spacing: 3px;
+      color: var(--accent);
+      text-shadow: 0 0 15px var(--glow);
+    }
+    .marquee-content span {
+      margin: 0 50px;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .warning {
+      background: rgba(255,0,0,0.18);
+      border: 3px solid #ff0044;
+      color: #ff88aa;
+      text-align: center;
+      padding: 16px 12px;
+      margin: 16px 12px;
+      border-radius: 12px;
+      font-size: clamp(1rem, 4vw, 1.25rem);
+      font-weight: bold;
+    }
+    h1 {
+      text-align: center;
+      font-size: clamp(2.2rem, 8vw, 3.5rem);
+      margin: 24px 12px 8px;
+      background: linear-gradient(90deg, #00f0ff, #ff00aa, #00f0ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px rgba(0,240,255,0.6);
+    }
+    .subtitle {
+      text-align: center;
+      color: #aaaaff;
+      margin: 0 12px 32px;
+      font-size: clamp(1.1rem, 4vw, 1.3rem);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 12px 60px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 24px 20px;
+      border: 1px solid rgba(0,240,255,0.18);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,240,255,0.08);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0,240,255,0.25);
+      border-color: var(--accent);
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-28deg);
+      font-size: clamp(2.2rem, 10vw, 3.8rem);
+      font-weight: 900;
+      color: rgba(255,0,80,0.11);
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 0;
+    }
+    .card-content {
+      position: relative;
+      z-index: 1;
+    }
+    .title {
+      font-size: clamp(1.4rem, 5vw, 1.7rem);
+      margin-bottom: 10px;
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--glow);
+    }
+    .desc {
+      color: #ccddff;
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+    .price {
+      font-size: clamp(1.8rem, 6vw, 2.2rem);
+      font-weight: bold;
+      color: #00ff9d;
+      margin: 12px 0;
+      text-shadow: 0 0 12px rgba(0,255,157,0.6);
+    }
+    .open-btn {
+      background: var(--white);
+      color: #0a0015;
+      border: none;
+      padding: 16px;
+      font-size: clamp(1.2rem, 4.5vw, 1.4rem);
+      font-weight: bold;
+      width: 100%;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 6px 20px rgba(255,255,255,0.25);
+      touch-action: manipulation;
+    }
+    .open-btn:active {
+      transform: scale(0.97);
+    }
+    .open-btn:hover {
+      box-shadow: 0 12px 30px rgba(255,255,255,0.4);
+    }
+    .footer-note {
+      text-align: center;
+      padding: 40px 20px 60px;
+      color: #777;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 480px) {
+      .grid {
+        gap: 20px;
+        padding: 0 10px 50px;
+      }
+      .card {
+        padding: 20px 16px;
+      }
+      .marquee {
+        padding: 12px 0;
+      }
+      .warning {
+        margin: 12px 8px;
+        padding: 14px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="marquee">
+    <div class="marquee-content">
+      <span>STOCKX</span>
+      <span>GOAT</span>
+      <span>DOORDASH</span>
+      <span>UBER EATS</span>
+      <span>McDONALD'S</span>
+      <span>VISA • MASTERCARD</span>
+      <span>AMEX BLACK</span>
+      <span></span>
+      <span>STOCKX</span>
+      <span>GOAT</span>
+      <span>DOORDASH</span>
+      <span>UBER EATS</span>
+      <span>McDONALD'S</span>
+    </div>
+  </div>
+
+  <div class="warning">
+    </div>
+
+  <h1>clicking shop</h1>
+  <p class="subtitle">Exclusive drop All sales final</p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-content">
+        <div class="title">💳 Visa Platinum 4242</div>
+        <div class="desc">balance of $6,000<br>Exp: 04/69 • CVV: 420</div>
+        <div class="price">$59</div>
+        <button class="open-btn" onclick="alert('Nothing opens lol – pure meme energy')">OPEN</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-content">
+        <div class="title">👟 StockX</div>
+        <div class="desc">5 sales<br>Email: adunla7807@gmail.com</div>
+        <div class="price">$59</div>
+        <button class="open-btn" onclick="alert('Clicked! But nothing happens – classic')">OPEN</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-content">
+        <div class="title">🐐 GOAT</div>
+        <div class="desc">a verified goat acc<br>0 disputes forever (dreams)</div>
+        <div class="price">$59</div>
+        <button class="open-btn" onclick="alert('open')">OPEN</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-content">
+        <div class="title">🍔 McDonald's</div>
+        <div class="desc"><br></div>
+        <div class="price">$11</zdiv>
+        <button class="open-btn" onclick="alert('Big Mac? In your dreams buddy')">OPEN</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-content">
+        <div class="title">🚀 Uber Eats + DoorDash Combo</div>
+        <div class="desc">$0 fees • Priority god mode<br>47k 5-stars reviews</div>
+        <div class="price">$11</div>
+        <button class="open-btn" onclick="alert('Delivery to nowhere – enjoy!')">OPEN</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-content">
+        <div class="title">🖤 Amex</div>
+        <div class="desc">amount $1,000<br>Metal card: plastic edition</div>
+        <div class="price">$30</div>
+        <button class="open-btn" onclick="alert('Centurion status: Denied lol')">OPEN</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    
+  </div>
+
+  <script>
+    // subtle background pulse
+    setInterval(() => {
+      document.body.style.background = `radial-gradient(circle at 50% 50%, #1a0040 0%, ${getComputedStyle(document.body).backgroundColor} 70%)`;
+      setTimeout(() => {
+        document.body.style.background = 'var(--bg)';
+      }, 4000);
+    }, 14000);
+  </script>
+
+</body>
+</html>
